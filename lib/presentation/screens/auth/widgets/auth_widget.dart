@@ -50,7 +50,6 @@ class _AuthWidgetState extends State<AuthWidget> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(widget.title),
         TextField(
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
