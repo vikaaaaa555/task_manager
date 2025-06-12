@@ -1,16 +1,10 @@
-# task_manager
+# Task Manager
 
-A new Flutter project.
+Task Manager is a Flutter application that helps users efficiently organize and track their tasks with a clean and responsive interface.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 🌍 **Localization** — the app supports English & Russian.
+- 🔥 **Firebase Integration**:
+    - **Authentication** — secure sign-in and sign-up with Firebase Authentication.
+    - **Realtime Database** — task and user data are stored and synced in real time using Firebase Realtime Database.
