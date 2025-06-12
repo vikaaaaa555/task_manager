@@ -7,7 +7,10 @@ import 'core/services/app_dependencies.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// Initialize Firebase with platform-specific options.
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   await registerAppDependencies();
   runApp(const MyApp());
 }

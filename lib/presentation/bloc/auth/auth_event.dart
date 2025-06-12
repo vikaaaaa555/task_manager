@@ -1,5 +1,8 @@
 part of 'auth_bloc.dart';
 
+/// Base class for all authentication-related events.
+///
+/// Used to trigger authentication logic such as sign up and log in.
 sealed class AuthEvent extends Equatable {
   const AuthEvent();
 

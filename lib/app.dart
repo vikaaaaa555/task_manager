@@ -14,7 +14,10 @@ import 'presentation/screens/auth/auth_screen_wrapper.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  /// The root widget of the application.
+  ///
+  /// Sets up localization, theming, and global [BlocProvider]s.
+  /// Initializes screen size configuration via [Media.init].
   @override
   Widget build(BuildContext context) {
     Media.init(context);

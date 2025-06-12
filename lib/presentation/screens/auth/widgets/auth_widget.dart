@@ -24,6 +24,7 @@ class _AuthWidgetState extends State<AuthWidget> {
     _passwordController.addListener(_validateFields);
   }
 
+  /// Validates that both fields are filled to enable the submit button.
   void _validateFields() {
     final isFilled =
         _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
@@ -35,6 +36,7 @@ class _AuthWidgetState extends State<AuthWidget> {
     }
   }
 
+  /// Calls the [onSubmit] callback with the current field values.
   void _onPressed() =>
       widget.onSubmit(_emailController.text, _passwordController.text);
 

@@ -8,11 +8,17 @@ import '../../../features/auth/domain/use_cases/sign_in_with_email_and_password.
 part 'auth_event.dart';
 part 'auth_state.dart';
 
+/// Bloc responsible for handling authentication events and states.
+///
+/// Supports signing up and logging in using email and password. Uses
+/// [CreateAccountWithEmailAndPasswordUseCase] and [SignInWithEmailAndPasswordUseCase]
+/// to perform authentication via Firebase.
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CreateAccountWithEmailAndPasswordUseCase
   _createAccountWithEmailAndPasswordUseCase;
   final SignInWithEmailAndPasswordUseCase _signInWithEmailAndPasswordUseCase;
 
+  /// Creates an instance of [AuthBloc] with required use cases.
   AuthBloc({
     required CreateAccountWithEmailAndPasswordUseCase
     createAccountWithEmailAndPasswordUseCase,
@@ -26,6 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LogInEvent>(_handleLogInEvent);
   }
 
+  /// Handles [SignUpEvent] by creating an account and emitting [AuthSuccess] or [AuthFailure].
   Future<void> _handleSignUpEvent(
     SignUpEvent event,
     Emitter<AuthState> emit,
@@ -46,6 +53,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
+  /// Handles [LogInEvent] by signing in.
   Future<void> _handleLogInEvent(
     LogInEvent event,
     Emitter<AuthState> emit,
