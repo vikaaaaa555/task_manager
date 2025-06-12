@@ -53,13 +53,36 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Unexpected error`
+  String get unexpectedError {
+    return Intl.message(
+      'Unexpected error',
+      name: 'unexpectedError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error: {code}\n{message}`
+  String errorCodeAndMessage(Object code, Object message) {
+    return Intl.message(
+      'Error: $code\n$message',
+      name: 'errorCodeAndMessage',
+      desc: '',
+      args: [code, message],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[Locale.fromSubtags(languageCode: 'en')];
+    return const <Locale>[
+      Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ru'),
+    ];
   }
 
   @override

@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a en locale. All the
+// This is a library that provides messages for a ru locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,13 +18,15 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'en';
+  String get localeName => 'ru';
 
-  static String m0(code, message) => "Error: ${code}\n${message}";
+  static String m0(code, message) => "Ошибка: ${code}\n${message}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "errorCodeAndMessage": m0,
-    "unexpectedError": MessageLookupByLibrary.simpleMessage("Unexpected error"),
+    "unexpectedError": MessageLookupByLibrary.simpleMessage(
+      "Неожиданная ошибка",
+    ),
   };
 }

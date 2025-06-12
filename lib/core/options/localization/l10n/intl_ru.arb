@@ -1,0 +1,4 @@
+{
+  "unexpectedError": "Неожиданная ошибка",
+  "errorCodeAndMessage": "Ошибка: {code}\n{message}"
+}
