@@ -2,7 +2,7 @@ part of 'auth_bloc.dart';
 
 /// Base class for all authentication-related events.
 ///
-/// Used to trigger authentication logic such as sign up and log in.
+/// Used to trigger authentication logic such as sign up, log in & reset password.
 sealed class AuthEvent extends Equatable {
   const AuthEvent();
 
@@ -28,4 +28,13 @@ final class LogInEvent extends AuthEvent {
 
   @override
   List<Object?> get props => [email, password];
+}
+
+final class ResetPasswordEvent extends AuthEvent {
+  final String email;
+
+  const ResetPasswordEvent({required this.email});
+
+  @override
+  List<Object?> get props => [email];
 }

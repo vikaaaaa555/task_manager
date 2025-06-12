@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:task_manager/features/auth/domain/use_cases/reset_password.dart';
 
 import 'core/options/localization/l10n.dart';
 import 'core/services/app_dependencies.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
                     sl<CreateAccountWithEmailAndPasswordUseCase>(),
                 signInWithEmailAndPasswordUseCase:
                     sl<SignInWithEmailAndPasswordUseCase>(),
+                resetPasswordUseCase: sl<ResetPasswordUseCase>(),
               ),
         ),
       ],

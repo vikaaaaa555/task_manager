@@ -40,6 +40,7 @@ class AuthScreen extends StatelessWidget {
                               (email, password) => bloc.add(
                                 LogInEvent(email: email, password: password),
                               ),
+                          showForgotPassword: true,
                         ),
                         AuthWidget(
                           title: S.of(context).signUp,

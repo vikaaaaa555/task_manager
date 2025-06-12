@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/options/localization/l10n.dart';
+import 'forgot_password_screen.dart';
 
 class AuthWidget extends StatefulWidget {
   final String title;
   final void Function(String email, String password) onSubmit;
+  final bool showForgotPassword;
 
-  const AuthWidget({super.key, required this.title, required this.onSubmit});
+  const AuthWidget({
+    super.key,
+    required this.title,
+    required this.onSubmit,
+    this.showForgotPassword = false,
+  });
 
   @override
   State<AuthWidget> createState() => _AuthWidgetState();
@@ -71,8 +78,32 @@ class _AuthWidgetState extends State<AuthWidget> {
             border: const OutlineInputBorder(),
           ),
         ),
+        if (widget.showForgotPassword)
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed:
+                  () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const ForgotPasswordScreen(),
+                    ),
+                  ),
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.zero,
+                minimumSize: const Size(0, 0),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                visualDensity: VisualDensity.compact,
+              ),
+              child: Text(
+                S.of(context).forgotPassword,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+            ),
+          ),
         const SizedBox(height: 24),
-        FilledButton.tonal(
+        FilledButton(
           onPressed: _isButtonEnabled ? _onPressed : null,
           child: Text(S.of(context).send),
         ),
