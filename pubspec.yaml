@@ -96,3 +96,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_intl:
+  enabled: true
+  output_dir: lib/core/options/localization
+  arb_dir: lib/core/options/localization/l10n
