@@ -7,9 +7,8 @@ import 'core/services/app_dependencies.dart';
 import 'core/utils/styles/theme_config.dart';
 import 'features/auth/domain/use_cases/create_account_with_email_and_password.dart';
 import 'features/auth/domain/use_cases/sign_in_with_email_and_password.dart';
-import 'presentation/bloc/log_in/log_in_bloc.dart';
-import 'presentation/bloc/sign_up/sign_up_bloc.dart';
-import 'presentation/screens/log_in/log_in_screen_wrapper.dart';
+import 'presentation/bloc/auth/auth_bloc.dart';
+import 'presentation/screens/auth/auth_screen_wrapper.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,16 +18,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SignUpBloc>(
+        BlocProvider<AuthBloc>(
           create:
-              (context) => SignUpBloc(
+              (context) => AuthBloc(
                 createAccountWithEmailAndPasswordUseCase:
                     sl<CreateAccountWithEmailAndPasswordUseCase>(),
-              ),
-        ),
-        BlocProvider<LogInBloc>(
-          create:
-              (context) => LogInBloc(
                 signInWithEmailAndPasswordUseCase:
                     sl<SignInWithEmailAndPasswordUseCase>(),
               ),
@@ -44,7 +38,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: S.delegate.supportedLocales,
         theme: lightTheme,
         darkTheme: darkTheme,
-        home: LogInScreenWrapper(),
+        home: AuthScreenWrapper(),
       ),
     );
   }
