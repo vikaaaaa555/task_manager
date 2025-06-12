@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:task_manager/features/auth/domain/use_cases/sign_in_with_email_and_password.dart';
+import 'package:task_manager/presentation/bloc/sign_in/sign_in_bloc.dart';
 
 import 'core/options/localization/l10n.dart';
 import 'core/services/app_dependencies.dart';
@@ -22,6 +24,13 @@ class MyApp extends StatelessWidget {
               (context) => SignUpBloc(
                 createAccountWithEmailAndPasswordUseCase:
                     sl<CreateAccountWithEmailAndPasswordUseCase>(),
+              ),
+        ),
+        BlocProvider<SignInBloc>(
+          create:
+              (context) => SignInBloc(
+                signInWithEmailAndPasswordUseCase:
+                    sl<SignInWithEmailAndPasswordUseCase>(),
               ),
         ),
       ],
