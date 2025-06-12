@@ -73,6 +73,31 @@ class S {
       args: [code, message],
     );
   }
+
+  /// `Sign up`
+  String get signUp {
+    return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
+  }
+
+  /// `Log In`
+  String get logIn {
+    return Intl.message('Log In', name: 'logIn', desc: '', args: []);
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message('Email', name: 'email', desc: '', args: []);
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message('Password', name: 'password', desc: '', args: []);
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message('Send', name: 'send', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

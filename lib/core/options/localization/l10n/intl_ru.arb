@@ -1,4 +1,9 @@
 {
-  "unexpectedError": "Неожиданная ошибка",
-  "errorCodeAndMessage": "Ошибка: {code}\n{message}"
+  "unexpectedError": "Непредвиденная ошибка",
+  "errorCodeAndMessage": "Ошибка: {code}\n{message}",
+  "signUp": "Регистрация",
+  "logIn": "Вход",
+  "email": "Почта",
+  "password": "Пароль",
+  "send": "Отправить"
 }

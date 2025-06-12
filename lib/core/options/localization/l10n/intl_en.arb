@@ -1,4 +1,9 @@
 {
   "unexpectedError": "Unexpected error",
-  "errorCodeAndMessage": "Error: {code}\n{message}"
+  "errorCodeAndMessage": "Error: {code}\n{message}",
+  "signUp": "Sign up",
+  "logIn": "Log In",
+  "email": "Email",
+  "password": "Password",
+  "send": "Send"
 }
