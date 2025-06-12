@@ -1,0 +1,11 @@
+{
+  "unexpectedError": "Непредвиденная ошибка",
+  "errorCodeAndMessage": "Ошибка: {code}\n{message}",
+  "signUp": "Регистрация",
+  "logIn": "Вход",
+  "email": "Почта",
+  "password": "Пароль",
+  "send": "Отправить",
+  "forgotPassword": "Забыли пароль?",
+  "sentResetLink": "Ссылка для сброса пароля отправлена на почту"
+}

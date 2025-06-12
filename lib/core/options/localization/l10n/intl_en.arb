@@ -1,0 +1,11 @@
+{
+  "unexpectedError": "Unexpected error",
+  "errorCodeAndMessage": "Error: {code}\n{message}",
+  "signUp": "Sign up",
+  "logIn": "Log In",
+  "email": "Email",
+  "password": "Password",
+  "send": "Send",
+  "forgotPassword": "Forgot password?",
+  "sentResetLink": "Reset password link sent to the email"
+}
