@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../features/auth/domain/use_cases/create_account_with_email_and_password.dart';
 
 part 'sign_up_event.dart';
-
 part 'sign_up_state.dart';
 
 /// Business Logic Component (BLoC) responsible for handling the sign-up process.
@@ -50,7 +49,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       emit(SignUpSuccess(userCredential.user!));
     } on FirebaseAuthException catch (e) {
       emit(
-        SignUpFailure(code: e.code, message: e.message ?? 'Sign up failure'),
+        SignUpFailure(code: e.code, message: e.message),
       );
     } catch (e) {
       emit(SignUpFailure(message: e.toString()));
