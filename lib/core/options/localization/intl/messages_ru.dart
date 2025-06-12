@@ -26,9 +26,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "email": MessageLookupByLibrary.simpleMessage("Почта"),
     "errorCodeAndMessage": m0,
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("Забыли пароль?"),
     "logIn": MessageLookupByLibrary.simpleMessage("Вход"),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
     "send": MessageLookupByLibrary.simpleMessage("Отправить"),
+    "sentResetLink": MessageLookupByLibrary.simpleMessage(
+      "Ссылка для сброса пароля отправлена на почту",
+    ),
     "signUp": MessageLookupByLibrary.simpleMessage("Регистрация"),
     "unexpectedError": MessageLookupByLibrary.simpleMessage(
       "Непредвиденная ошибка",

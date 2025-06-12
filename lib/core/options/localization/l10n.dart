@@ -98,6 +98,26 @@ class S {
   String get send {
     return Intl.message('Send', name: 'send', desc: '', args: []);
   }
+
+  /// `Forgot password?`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot password?',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset password link sent to the email`
+  String get sentResetLink {
+    return Intl.message(
+      'Reset password link sent to the email',
+      name: 'sentResetLink',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
