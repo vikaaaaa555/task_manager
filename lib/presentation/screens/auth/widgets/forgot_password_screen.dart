@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/options/localization/l10n.dart';
-import '../../../../media.dart';
+import '../../../../core/utils/media.dart';
 import '../../../bloc/auth/auth_bloc.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {

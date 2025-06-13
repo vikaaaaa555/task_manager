@@ -9,7 +9,7 @@ import 'core/services/app_dependencies.dart';
 import 'core/utils/styles/theme_config.dart';
 import 'features/auth/domain/use_cases/create_account_with_email_and_password.dart';
 import 'features/auth/domain/use_cases/sign_in_with_email_and_password.dart';
-import 'media.dart';
+import 'core/utils/media.dart';
 import 'presentation/bloc/auth/auth_bloc.dart';
 import 'presentation/screens/auth/auth_screen_wrapper.dart';
 
