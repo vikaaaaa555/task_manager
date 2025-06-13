@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/auth/data/data_sources/auth_remote_data_source.dart';
@@ -18,6 +19,7 @@ Future<void> registerAppDependencies() async => await Future.wait([
   _registerUseCases(),
   _registerRepositories(),
   _registerDataSources(),
+  _registerStreams(),
 ]);
 
 Future<void> _registerExternal() async {}
@@ -42,4 +44,9 @@ Future<void> _registerRepositories() async =>
 Future<void> _registerDataSources() async =>
     sl.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(),
+    );
+
+Future<void> _registerStreams() async =>
+    sl.registerLazySingleton<Stream<User?>>(
+      () => sl<AuthRepository>().authStateChanges,
     );

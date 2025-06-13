@@ -38,3 +38,13 @@ final class ResetPasswordEvent extends AuthEvent {
   @override
   List<Object?> get props => [email];
 }
+
+/// Internal event triggered by [FirebaseAuth.authStateChanges] stream.
+final class _AuthStatusChangedEvent extends AuthEvent {
+  final User? user;
+
+  const _AuthStatusChangedEvent(this.user);
+
+  @override
+  List<Object?> get props => [user];
+}
