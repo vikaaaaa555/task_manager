@@ -14,6 +14,7 @@ class AuthScreen extends StatelessWidget {
     final bloc = context.read<AuthBloc>();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: EdgeInsets.symmetric(
           vertical: Media.screenHeight * 0.3,
@@ -21,39 +22,37 @@ class AuthScreen extends StatelessWidget {
         ),
         child: DefaultTabController(
           length: 2,
-          child: Scaffold(
-            body: Center(
-              child: Column(
-                children: [
-                  TabBar(
-                    tabs: [
-                      Tab(text: S.of(context).logIn),
-                      Tab(text: S.of(context).signUp),
+          child: Center(
+            child: Column(
+              children: [
+                TabBar(
+                  tabs: [
+                    Tab(text: S.of(context).logIn),
+                    Tab(text: S.of(context).signUp),
+                  ],
+                ),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      AuthWidget(
+                        title: S.of(context).logIn,
+                        onSubmit:
+                            (email, password) => bloc.add(
+                              LogInEvent(email: email, password: password),
+                            ),
+                        showForgotPassword: true,
+                      ),
+                      AuthWidget(
+                        title: S.of(context).signUp,
+                        onSubmit:
+                            (email, password) => bloc.add(
+                              SignUpEvent(email: email, password: password),
+                            ),
+                      ),
                     ],
                   ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        AuthWidget(
-                          title: S.of(context).logIn,
-                          onSubmit:
-                              (email, password) => bloc.add(
-                                LogInEvent(email: email, password: password),
-                              ),
-                          showForgotPassword: true,
-                        ),
-                        AuthWidget(
-                          title: S.of(context).signUp,
-                          onSubmit:
-                              (email, password) => bloc.add(
-                                SignUpEvent(email: email, password: password),
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
