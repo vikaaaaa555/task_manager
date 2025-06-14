@@ -2,15 +2,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:task_manager/features/auth/domain/use_cases/reset_password.dart';
 
 import 'core/options/localization/l10n.dart';
 import 'core/services/app_dependencies.dart';
 import 'core/utils/constants/styles/theme_config.dart';
-import 'features/auth/domain/use_cases/create_account_with_email_and_password.dart';
-import 'features/auth/domain/use_cases/sign_in_with_email_and_password.dart';
 import 'core/utils/media.dart';
+import 'features/auth/domain/use_cases/create_account_with_email_and_password.dart';
+import 'features/auth/domain/use_cases/reset_password.dart';
+import 'features/auth/domain/use_cases/sign_in_with_email_and_password.dart';
+import 'features/task/domain/use_cases/create_task.dart';
+import 'features/task/domain/use_cases/delete_task.dart';
+import 'features/task/domain/use_cases/get_all_tasks.dart';
+import 'features/task/domain/use_cases/update_task.dart';
 import 'presentation/bloc/auth/auth_bloc.dart';
+import 'presentation/bloc/home/home_bloc.dart';
 import 'presentation/screens/auth/auth_screen_wrapper.dart';
 
 class MyApp extends StatelessWidget {
@@ -34,6 +39,15 @@ class MyApp extends StatelessWidget {
                     sl<SignInWithEmailAndPasswordUseCase>(),
                 resetPasswordUseCase: sl<ResetPasswordUseCase>(),
                 authStateChanges: sl<Stream<User?>>(),
+              ),
+        ),
+        BlocProvider<HomeBloc>(
+          create:
+              (context) => HomeBloc(
+                getAllTasksUseCase: sl<GetAllTasksUseCase>(),
+                createTaskUseCase: sl<CreateTaskUseCase>(),
+                deleteTaskUseCase: sl<DeleteTaskUseCase>(),
+                updateTaskUseCase: sl<UpdateTaskUseCase>(),
               ),
         ),
       ],
