@@ -27,17 +27,16 @@ class AuthScreenWrapper extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is AuthInitial) {
-          return const AuthScreen();
-        } else if (state is AuthLoading || state is AuthSuccess) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is AuthFailure) {
-          return Center(child: Text(S.of(context).errorCodeAndMessage(
-            state.code as Object,
-            state.message as Object)),
-          );
-        } else {
-          return Center(child: Text(S.of(context).unexpectedError));
+        switch (state) {
+          case AuthInitial():
+            return const AuthScreen();
+          case AuthLoading():
+          case AuthSuccess():
+            return const Center(child: CircularProgressIndicator());
+          case AuthFailure():
+            return Center(
+              child: Text(S.of(context).errorMessage(state.message as Object)),
+            );
         }
       },
     );
