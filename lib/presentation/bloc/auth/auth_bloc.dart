@@ -9,7 +9,6 @@ import '../../../features/auth/domain/use_cases/reset_password.dart';
 import '../../../features/auth/domain/use_cases/sign_in_with_email_and_password.dart';
 
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
 /// Bloc responsible for handling authentication events and states.
@@ -19,33 +18,26 @@ part 'auth_state.dart';
 /// to perform authentication via Firebase.
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CreateAccountWithEmailAndPasswordUseCase
-  _createAccountWithEmailAndPasswordUseCase;
-  final SignInWithEmailAndPasswordUseCase _signInWithEmailAndPasswordUseCase;
-  final ResetPasswordUseCase _resetPasswordUseCase;
-  final Stream<User?> _authStateChanges;
+  createAccountWithEmailAndPasswordUseCase;
+  final SignInWithEmailAndPasswordUseCase signInWithEmailAndPasswordUseCase;
+  final ResetPasswordUseCase resetPasswordUseCase;
+  final Stream<User?> authStateChanges;
 
   late final StreamSubscription<User?> _authStateSubscription;
 
   /// Creates an instance of [AuthBloc] with required use cases.
   AuthBloc({
-    required CreateAccountWithEmailAndPasswordUseCase
-    createAccountWithEmailAndPasswordUseCase,
-    required SignInWithEmailAndPasswordUseCase
-    signInWithEmailAndPasswordUseCase,
-    required ResetPasswordUseCase resetPasswordUseCase,
-    required Stream<User?> authStateChanges,
-  }) : _createAccountWithEmailAndPasswordUseCase =
-           createAccountWithEmailAndPasswordUseCase,
-       _signInWithEmailAndPasswordUseCase = signInWithEmailAndPasswordUseCase,
-       _resetPasswordUseCase = resetPasswordUseCase,
-       _authStateChanges = authStateChanges,
-       super(AuthInitial()) {
+    required this.createAccountWithEmailAndPasswordUseCase,
+    required this.signInWithEmailAndPasswordUseCase,
+    required this.resetPasswordUseCase,
+    required this.authStateChanges,
+  }) : super(AuthInitial()) {
     on<SignUpEvent>(_handleSignUpEvent);
     on<LogInEvent>(_handleLogInEvent);
     on<ResetPasswordEvent>(_handleResetPasswordEvent);
     on<_AuthStatusChangedEvent>(_handleAuthStatusChangedEvent);
 
-    _authStateSubscription = _authStateChanges.listen(
+    _authStateSubscription = authStateChanges.listen(
       (user) =>
           user != null
               ? add(_AuthStatusChangedEvent(user))
@@ -60,7 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading());
     try {
-      await _createAccountWithEmailAndPasswordUseCase(
+      await createAccountWithEmailAndPasswordUseCase(
         CreateAccountWithEmailAndPasswordParams(
           email: event.email,
           password: event.password,
@@ -80,7 +72,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading());
     try {
-      await _signInWithEmailAndPasswordUseCase(
+      await signInWithEmailAndPasswordUseCase(
         SignInWithEmailAndPasswordParams(
           email: event.email,
           password: event.password,
@@ -100,7 +92,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading());
     try {
-      await _resetPasswordUseCase(ResetPasswordParams(email: event.email));
+      await resetPasswordUseCase(ResetPasswordParams(email: event.email));
       emit(AuthInitial());
     } on FirebaseAuthException catch (e) {
       emit(AuthFailure(code: e.code, message: e.message));
