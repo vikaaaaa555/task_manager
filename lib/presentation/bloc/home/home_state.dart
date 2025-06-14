@@ -15,10 +15,10 @@ final class HomeLoading extends HomeState {
   const HomeLoading();
 }
 
-final class TasksLoadSuccess extends HomeState {
+final class HomeTasksLoadSuccess extends HomeState {
   final List<TaskEntity>? tasks;
 
-  const TasksLoadSuccess({required this.tasks});
+  const HomeTasksLoadSuccess({required this.tasks});
 
   @override
   List<Object?> get props => [tasks];

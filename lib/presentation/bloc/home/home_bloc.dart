@@ -41,7 +41,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ///
   /// Emits:
   /// - [HomeLoading] when operation starts
-  /// - [TasksLoadSuccess] with list of tasks if successful
+  /// - [HomeTasksLoadSuccess] with list of tasks if successful
   /// - [HomeError] if an error occurs
   Future<void> _handleLoadTasksFromDBEvent(
     LoadTasksFromDBEvent event,
@@ -50,7 +50,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(const HomeLoading());
     try {
       final tasks = await getAllTasksUseCase();
-      emit(TasksLoadSuccess(tasks: tasks));
+      emit(HomeTasksLoadSuccess(tasks: tasks));
     } catch (e) {
       emit(HomeError(message: e.toString()));
     }
