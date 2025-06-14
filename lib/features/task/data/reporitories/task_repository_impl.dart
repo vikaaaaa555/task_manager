@@ -23,7 +23,7 @@ class TaskRepositoryImpl implements TaskRepository {
       await _dataSource.deleteTask(id: id);
 
   @override
-  Future<List<TaskModel>?> getAllTasks() async =>
+  Future<List<TaskModel>> getAllTasks() async =>
       await _dataSource.getAllTasks();
 
   @override

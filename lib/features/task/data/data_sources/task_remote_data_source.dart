@@ -9,7 +9,7 @@ import '../models/task_model.dart';
 /// implementation must provide to interact with task data stored remotely.
 abstract class TaskRemoteDataSource {
   /// Retrieves all tasks for the current user.
-  Future<List<TaskModel>?> getAllTasks();
+  Future<List<TaskModel>> getAllTasks();
 
   /// Creates a new task with the given parameters.
   Future<void> createTask({
@@ -84,7 +84,7 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   }
 
   @override
-  Future<List<TaskModel>?> getAllTasks() async {
+  Future<List<TaskModel>> getAllTasks() async {
     try {
       final snapshot = await _userTasksRef.get();
       if (!snapshot.exists) return [];
