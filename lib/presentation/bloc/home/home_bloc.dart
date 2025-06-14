@@ -7,10 +7,10 @@ import '../../../features/task/domain/use_cases/delete_task.dart';
 import '../../../features/task/domain/use_cases/get_all_tasks.dart';
 import '../../../features/task/domain/use_cases/update_task.dart';
 
-part 'tasks_event.dart';
-part 'tasks_state.dart';
+part 'home_event.dart';
+part 'home_state.dart';
 
-/// BLoC responsible for managing task-related state and business logic.
+/// BLoC responsible for managing home-related state and business logic.
 ///
 /// Handles:
 /// - Loading tasks from the database
@@ -19,18 +19,18 @@ part 'tasks_state.dart';
 /// - Deleting tasks
 ///
 /// Communicates with use cases to perform these operations and emits appropriate states.
-class TasksBloc extends Bloc<TasksEvent, TasksState> {
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetAllTasksUseCase getAllTasksUseCase;
   final CreateTaskUseCase createTaskUseCase;
   final DeleteTaskUseCase deleteTaskUseCase;
   final UpdateTaskUseCase updateTaskUseCase;
 
-  TasksBloc({
+  HomeBloc({
     required this.getAllTasksUseCase,
     required this.createTaskUseCase,
     required this.deleteTaskUseCase,
     required this.updateTaskUseCase,
-  }) : super(const TasksInitial()) {
+  }) : super(const HomeInitial()) {
     on<LoadTasksFromDBEvent>(_handleLoadTasksFromDBEvent);
     on<CreateTaskEvent>(_handleCreateTaskEvent);
     on<DeleteTaskEvent>(_handleDeleteTaskEvent);
@@ -40,30 +40,30 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   /// Handles [LoadTasksFromDBEvent] to load all tasks from the database.
   ///
   /// Emits:
-  /// - [TasksLoading] when operation starts
+  /// - [HomeLoading] when operation starts
   /// - [TasksLoadSuccess] with list of tasks if successful
-  /// - [TasksFailure] if an error occurs
+  /// - [HomeError] if an error occurs
   Future<void> _handleLoadTasksFromDBEvent(
     LoadTasksFromDBEvent event,
-    Emitter<TasksState> emit,
+    Emitter<HomeState> emit,
   ) async {
-    emit(const TasksLoading());
+    emit(const HomeLoading());
     try {
       final tasks = await getAllTasksUseCase();
       emit(TasksLoadSuccess(tasks: tasks));
     } catch (e) {
-      emit(TasksFailure(message: e.toString()));
+      emit(HomeError(message: e.toString()));
     }
   }
 
-  /// Handles [CreateTaskEvent] to create a new task.
+  /// Handles [CreateTaskEvent] to create a new home.
   ///
   /// Triggers [LoadTasksFromDBEvent] after successful creation
   Future<void> _handleCreateTaskEvent(
     CreateTaskEvent event,
-    Emitter<TasksState> emit,
+    Emitter<HomeState> emit,
   ) async {
-    emit(const TasksLoading());
+    emit(const HomeLoading());
     try {
       await createTaskUseCase(
         CreateTaskParams(
@@ -74,34 +74,34 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       );
       add(LoadTasksFromDBEvent());
     } catch (e) {
-      emit(TasksFailure(message: e.toString()));
+      emit(HomeError(message: e.toString()));
     }
   }
 
-  /// Handles [CreateTaskEvent] to create a new task.
+  /// Handles [CreateTaskEvent] to create a new home.
   ///
   /// Triggers [LoadTasksFromDBEvent] after successful creation
   Future<void> _handleDeleteTaskEvent(
     DeleteTaskEvent event,
-    Emitter<TasksState> emit,
+    Emitter<HomeState> emit,
   ) async {
-    emit(const TasksLoading());
+    emit(const HomeLoading());
     try {
       await deleteTaskUseCase(DeleteTaskParams(id: event.id));
       add(LoadTasksFromDBEvent());
     } catch (e) {
-      emit(TasksFailure(message: e.toString()));
+      emit(HomeError(message: e.toString()));
     }
   }
 
-  /// Handles [DeleteTaskEvent] to delete a task by ID.
+  /// Handles [DeleteTaskEvent] to delete a home by ID.
   ///
   /// Triggers [LoadTasksFromDBEvent] after successful creation
   Future<void> _handleUpdateTaskEvent(
     UpdateTaskEvent event,
-    Emitter<TasksState> emit,
+    Emitter<HomeState> emit,
   ) async {
-    emit(const TasksLoading());
+    emit(const HomeLoading());
     try {
       await updateTaskUseCase(
         UpdateTaskParams(
@@ -113,7 +113,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       );
       add(LoadTasksFromDBEvent());
     } catch (e) {
-      emit(TasksFailure(message: e.toString()));
+      emit(HomeError(message: e.toString()));
     }
   }
 }

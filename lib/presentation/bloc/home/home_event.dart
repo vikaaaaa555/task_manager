@@ -1,17 +1,17 @@
-part of 'tasks_bloc.dart';
+part of 'home_bloc.dart';
 
-sealed class TasksEvent extends Equatable {
-  const TasksEvent();
+sealed class HomeEvent extends Equatable {
+  const HomeEvent();
 
   @override
   List<Object?> get props => [];
 }
 
-final class LoadTasksFromDBEvent extends TasksEvent {
+final class LoadTasksFromDBEvent extends HomeEvent {
   const LoadTasksFromDBEvent();
 }
 
-final class CreateTaskEvent extends TasksEvent {
+final class CreateTaskEvent extends HomeEvent {
   final String title;
   final String description;
   final DateTime dueDate;
@@ -26,7 +26,7 @@ final class CreateTaskEvent extends TasksEvent {
   List<Object?> get props => [title, description, dueDate];
 }
 
-final class DeleteTaskEvent extends TasksEvent {
+final class DeleteTaskEvent extends HomeEvent {
   final String id;
 
   const DeleteTaskEvent({required this.id});
@@ -35,7 +35,7 @@ final class DeleteTaskEvent extends TasksEvent {
   List<Object?> get props => [id];
 }
 
-final class UpdateTaskEvent extends TasksEvent {
+final class UpdateTaskEvent extends HomeEvent {
   final String id;
   final String title;
   final String description;
