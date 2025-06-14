@@ -15,9 +15,9 @@ class UpdateTaskUseCase extends UseCaseWithParams<void, UpdateTaskParams> {
 
 class UpdateTaskParams extends Equatable {
   final int id;
-  final String? title;
-  final String? description;
-  final DateTime? dueDate;
+  final String title;
+  final String description;
+  final DateTime dueDate;
 
   const UpdateTaskParams({
     required this.id,

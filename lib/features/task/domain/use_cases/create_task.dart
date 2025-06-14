@@ -15,7 +15,7 @@ class CreateTaskUseCase extends UseCaseWithParams<void, CreateTaskParams> {
 
 class CreateTaskParams extends Equatable {
   final String title;
-  final String? description;
+  final String description;
   final DateTime dueDate;
 
   const CreateTaskParams({
