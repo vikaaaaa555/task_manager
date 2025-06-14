@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,6 +22,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   _createAccountWithEmailAndPasswordUseCase;
   final SignInWithEmailAndPasswordUseCase _signInWithEmailAndPasswordUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
+  final Stream<User?> _authStateChanges;
+
+  late final StreamSubscription<User?> _authStateSubscription;
 
   /// Creates an instance of [AuthBloc] with required use cases.
   AuthBloc({
@@ -28,14 +33,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required SignInWithEmailAndPasswordUseCase
     signInWithEmailAndPasswordUseCase,
     required ResetPasswordUseCase resetPasswordUseCase,
+    required Stream<User?> authStateChanges,
   }) : _createAccountWithEmailAndPasswordUseCase =
            createAccountWithEmailAndPasswordUseCase,
        _signInWithEmailAndPasswordUseCase = signInWithEmailAndPasswordUseCase,
        _resetPasswordUseCase = resetPasswordUseCase,
+       _authStateChanges = authStateChanges,
        super(AuthInitial()) {
     on<SignUpEvent>(_handleSignUpEvent);
     on<LogInEvent>(_handleLogInEvent);
     on<ResetPasswordEvent>(_handleResetPasswordEvent);
+    on<_AuthStatusChangedEvent>(_handleAuthStatusChangedEvent);
+
+    _authStateSubscription = _authStateChanges.listen(
+      (user) =>
+          user != null
+              ? add(_AuthStatusChangedEvent(user))
+              : add(_AuthStatusChangedEvent(null)),
+    );
   }
 
   /// Handles [SignUpEvent] by creating an account and emitting [AuthSuccess] or [AuthFailure].
@@ -45,13 +60,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading());
     try {
-      final userCredential = await _createAccountWithEmailAndPasswordUseCase(
+      await _createAccountWithEmailAndPasswordUseCase(
         CreateAccountWithEmailAndPasswordParams(
           email: event.email,
           password: event.password,
         ),
       );
-      emit(AuthSuccess(userCredential.user!));
     } on FirebaseAuthException catch (e) {
       emit(AuthFailure(code: e.code, message: e.message));
     } catch (e) {
@@ -66,13 +80,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading());
     try {
-      final userCredential = await _signInWithEmailAndPasswordUseCase(
+      await _signInWithEmailAndPasswordUseCase(
         SignInWithEmailAndPasswordParams(
           email: event.email,
           password: event.password,
         ),
       );
-      emit(AuthSuccess(userCredential.user!));
     } on FirebaseAuthException catch (e) {
       emit(AuthFailure(code: e.code, message: e.message));
     } catch (e) {
@@ -94,5 +107,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } catch (e) {
       emit(AuthFailure(message: e.toString()));
     }
+  }
+
+  /// Handles changes in the authentication state by listening to the
+  /// [FirebaseAuth.authStateChanges] stream.
+  ///
+  /// If a [User] is provided, it emits [AuthSuccess] with the current user.
+  /// Otherwise, it emits [AuthInitial], indicating no authenticated user.
+  void _handleAuthStatusChangedEvent(
+    _AuthStatusChangedEvent event,
+    Emitter<AuthState> emit,
+  ) =>
+      event.user != null ? emit(AuthSuccess(event.user!)) : emit(AuthInitial());
+
+  /// Cancels the [authStateChanges] subscription when the BLoC is closed.
+  ///
+  /// This prevents memory leaks by properly cleaning up the subscription
+  /// to the Firebase authentication state stream.
+  @override
+  Future<void> close() {
+    _authStateSubscription.cancel();
+    return super.close();
   }
 }

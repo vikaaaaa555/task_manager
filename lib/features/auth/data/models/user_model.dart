@@ -19,11 +19,4 @@ class UserModel extends UserEntity {
   /// Creates a [UserModel] instance from a Firebase [User] object.
   factory UserModel.fromFirebaseUser(User user) =>
       UserModel(id: user.uid, email: user.email, name: user.displayName);
-
-  /// Creates a [UserModel] instance from a [UserEntity].
-  factory UserModel.fromEntity(UserEntity entity) =>
-      UserModel(id: entity.id, email: entity.email, name: entity.name);
-
-  /// Converts this data model to a domain entity.
-  UserEntity toEntity() => UserEntity(id: id, email: email, name: name);
 }
