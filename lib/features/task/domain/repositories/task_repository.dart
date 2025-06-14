@@ -6,11 +6,11 @@ abstract class TaskRepository {
   Future<void> createTask(String title, String description, DateTime dueDate);
 
   Future<void> updateTask(
-    int id,
+    String id,
     String title,
     String description,
     DateTime dueDate,
   );
 
-  Future<void> deleteTask(int id);
+  Future<void> deleteTask(String id);
 }

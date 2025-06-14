@@ -14,7 +14,7 @@ class UpdateTaskUseCase extends UseCaseWithParams<void, UpdateTaskParams> {
 }
 
 class UpdateTaskParams extends Equatable {
-  final int id;
+  final String id;
   final String title;
   final String description;
   final DateTime dueDate;
