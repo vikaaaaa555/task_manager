@@ -1,7 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 
 import '../../../auth/domain/repositories/auth_repository.dart';
-import '../../domain/entities/task_entity.dart';
 import '../models/task_model.dart';
 
 /// Abstract class defining the contract for Task remote data operations.
@@ -10,7 +9,7 @@ import '../models/task_model.dart';
 /// implementation must provide to interact with task data stored remotely.
 abstract class TaskRemoteDataSource {
   /// Retrieves all tasks for the current user.
-  Future<List<TaskEntity>> getAllTasks();
+  Future<List<TaskModel>?> getAllTasks();
 
   /// Creates a new task with the given parameters.
   Future<void> createTask({
@@ -85,7 +84,7 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   }
 
   @override
-  Future<List<TaskEntity>> getAllTasks() async {
+  Future<List<TaskModel>?> getAllTasks() async {
     try {
       final snapshot = await _userTasksRef.get();
       if (!snapshot.exists) return [];
