@@ -16,7 +16,7 @@ final class HomeLoading extends HomeState {
 }
 
 final class HomeTasksLoadSuccess extends HomeState {
-  final List<TaskEntity>? tasks;
+  final List<TaskEntity> tasks;
 
   const HomeTasksLoadSuccess({required this.tasks});
 
