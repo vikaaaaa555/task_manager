@@ -13,18 +13,22 @@ abstract class TaskRemoteDataSource {
   Future<List<TaskEntity>> getAllTasks();
 
   /// Creates a new task with the given parameters.
-  Future<void> createTask(String title, String description, DateTime dueDate);
+  Future<void> createTask({
+    required String title,
+    required String description,
+    required DateTime dueDate,
+  });
 
   /// Updates an existing task with the given parameters.
-  Future<void> updateTask(
-    String id,
-    String title,
-    String description,
-    DateTime dueDate,
-  );
+  Future<void> updateTask({
+    required String id,
+    required String title,
+    required String description,
+    required DateTime dueDate,
+  });
 
   /// Deletes a task with the given ID.
-  Future<void> deleteTask(String id);
+  Future<void> deleteTask({required String id});
 }
 
 /// Implementation of [TaskRemoteDataSource] using Firebase Realtime Database.
@@ -51,11 +55,11 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   }
 
   @override
-  Future<void> createTask(
-    String title,
-    String description,
-    DateTime dueDate,
-  ) async {
+  Future<void> createTask({
+    required String title,
+    required String description,
+    required DateTime dueDate,
+  }) async {
     try {
       final newTaskRef = _userTasksRef.push();
       await newTaskRef.set(
@@ -72,7 +76,7 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   }
 
   @override
-  Future<void> deleteTask(String id) async {
+  Future<void> deleteTask({required String id}) async {
     try {
       await _userTasksRef.child(id).remove();
     } catch (e) {
@@ -101,12 +105,12 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
   }
 
   @override
-  Future<void> updateTask(
-    String id,
-    String title,
-    String description,
-    DateTime dueDate,
-  ) async {
+  Future<void> updateTask({
+    required String id,
+    required String title,
+    required String description,
+    required DateTime dueDate,
+  }) async {
     try {
       await _userTasksRef.child(id).update({
         'title': title,
