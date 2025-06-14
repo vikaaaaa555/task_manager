@@ -64,13 +64,13 @@ class S {
     );
   }
 
-  /// `Error: {code}\n{message}`
-  String errorCodeAndMessage(Object code, Object message) {
+  /// `Error: {message}`
+  String errorMessage(Object message) {
     return Intl.message(
-      'Error: $code\n$message',
-      name: 'errorCodeAndMessage',
+      'Error: $message',
+      name: 'errorMessage',
       desc: '',
-      args: [code, message],
+      args: [message],
     );
   }
 
@@ -109,10 +109,10 @@ class S {
     );
   }
 
-  /// `Reset password link sent to the email`
+  /// `Reset password link sent to the email.`
   String get sentResetLink {
     return Intl.message(
-      'Reset password link sent to the email',
+      'Reset password link sent to the email.',
       name: 'sentResetLink',
       desc: '',
       args: [],
