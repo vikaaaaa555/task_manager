@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/options/localization/l10n.dart';
 import '../../bloc/home/home_bloc.dart';
 import 'home_screen.dart';
 
@@ -10,7 +9,7 @@ class HomeScreenWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         switch (state) {
           case HomeInitial():
@@ -21,11 +20,7 @@ class HomeScreenWrapper extends StatelessWidget {
           case HomeTasksLoadSuccess():
             return HomeScreen(tasks: state.tasks);
           case HomeError():
-            return Center(
-              child: Text(S.of(context).errorMessage(state.message as Object)),
-            );
-          default:
-            return Center(child: Text(S.of(context).unexpectedError));
+            return Center(child: Text(state.message));
         }
       },
     );
