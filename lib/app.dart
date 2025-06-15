@@ -16,7 +16,7 @@ import 'features/task/domain/use_cases/get_all_tasks_use_case.dart';
 import 'features/task/domain/use_cases/update_task_use_case.dart';
 import 'presentation/bloc/auth/auth_bloc.dart';
 import 'presentation/bloc/home/home_bloc.dart';
-import 'presentation/screens/auth/auth_screen_wrapper.dart';
+import 'presentation/router/router.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
               ),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -61,7 +61,11 @@ class MyApp extends StatelessWidget {
         supportedLocales: S.delegate.supportedLocales,
         theme: lightTheme,
         darkTheme: darkTheme,
-        home: AuthScreenWrapper(),
+        routerDelegate: AppNavigation.router.routerDelegate,
+        routeInformationParser:
+        AppNavigation.router.routeInformationParser,
+        routeInformationProvider:
+        AppNavigation.router.routeInformationProvider,
       ),
     );
   }
