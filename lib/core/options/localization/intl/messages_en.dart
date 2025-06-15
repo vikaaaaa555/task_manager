@@ -20,20 +20,31 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(message) => "Error: ${message}";
+  static String m0(formattedDate) => "Due: ${formattedDate}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "description": MessageLookupByLibrary.simpleMessage("Description"),
+    "dueFormattedDate": m0,
     "email": MessageLookupByLibrary.simpleMessage("Email"),
-    "errorMessage": m0,
+    "fillInAllFields": MessageLookupByLibrary.simpleMessage(
+      "Fill in all fields",
+    ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
+    "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
     "logIn": MessageLookupByLibrary.simpleMessage("Log In"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "save": MessageLookupByLibrary.simpleMessage("Save"),
+    "selectDueDate": MessageLookupByLibrary.simpleMessage("Select due date"),
     "send": MessageLookupByLibrary.simpleMessage("Send"),
     "sentResetLink": MessageLookupByLibrary.simpleMessage(
-      "Reset password link sent to the email.",
+      "The password reset link has been sent to your email.",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+    "tasks": MessageLookupByLibrary.simpleMessage("Tasks"),
+    "title": MessageLookupByLibrary.simpleMessage("Title"),
     "unexpectedError": MessageLookupByLibrary.simpleMessage("Unexpected error"),
+    "update": MessageLookupByLibrary.simpleMessage("Update"),
   };
 }

@@ -20,22 +20,35 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
-  static String m0(message) => "Ошибка: ${message}";
+  static String m0(formattedDate) => "До: ${formattedDate}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
+    "description": MessageLookupByLibrary.simpleMessage("Описание"),
+    "dueFormattedDate": m0,
     "email": MessageLookupByLibrary.simpleMessage("Почта"),
-    "errorMessage": m0,
+    "fillInAllFields": MessageLookupByLibrary.simpleMessage(
+      "Заполните все поля",
+    ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Забыли пароль?"),
+    "goBack": MessageLookupByLibrary.simpleMessage("Назад"),
     "logIn": MessageLookupByLibrary.simpleMessage("Вход"),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+    "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+    "selectDueDate": MessageLookupByLibrary.simpleMessage(
+      "Выберите дату окончания",
+    ),
     "send": MessageLookupByLibrary.simpleMessage("Отправить"),
     "sentResetLink": MessageLookupByLibrary.simpleMessage(
       "Ссылка для сброса пароля отправлена на почту.",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "tasks": MessageLookupByLibrary.simpleMessage("Задачи"),
+    "title": MessageLookupByLibrary.simpleMessage("Заголовок"),
     "unexpectedError": MessageLookupByLibrary.simpleMessage(
       "Непредвиденная ошибка",
     ),
+    "update": MessageLookupByLibrary.simpleMessage("Обновить"),
   };
 }

@@ -1,11 +1,20 @@
 {
   "unexpectedError": "Непредвиденная ошибка",
-  "errorMessage": "Ошибка: {message}",
   "signUp": "Регистрация",
   "logIn": "Вход",
   "email": "Почта",
   "password": "Пароль",
   "send": "Отправить",
   "forgotPassword": "Забыли пароль?",
-  "sentResetLink": "Ссылка для сброса пароля отправлена на почту."
+  "sentResetLink": "Ссылка для сброса пароля отправлена на почту.",
+  "dueFormattedDate": "До: {formattedDate}",
+  "title": "Заголовок",
+  "description": "Описание",
+  "selectDueDate": "Выберите дату окончания",
+  "fillInAllFields": "Заполните все поля",
+  "save": "Сохранить",
+  "update": "Обновить",
+  "delete": "Удалить",
+  "tasks": "Задачи",
+  "goBack": "Назад"
 }
