@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,27 +18,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _startTimer();
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(
-      const Duration(seconds: 30),
-      (timer) => context.read<HomeBloc>().add(LoadTasksFromDBEvent()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +25,34 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(S.of(context).tasks),
         centerTitle: true,
         scrolledUnderElevation: 0.0,
+        actions: [
+          PopupMenuButton<String>(
+            icon: Icon(Icons.more_vert),
+            onSelected: (value) {
+              if (value == 'refresh') {
+                context.read<HomeBloc>().add(LoadTasksFromDBEvent());
+              } else {
+                setState(() {
+                  widget.tasks.sort(
+                    (a, b) =>
+                        a.title.toLowerCase().compareTo(b.title.toLowerCase()),
+                  );
+                });
+              }
+            },
+            itemBuilder:
+                (context) => [
+                  PopupMenuItem<String>(
+                    value: 'refresh',
+                    child: Text(S.of(context).refresh),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'sort',
+                    child: Text(S.of(context).arrangeAlphabetically),
+                  ),
+                ],
+          ),
+        ],
       ),
       body:
           widget.tasks.isNotEmpty
@@ -55,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(10),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                    crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                     childAspectRatio: 1,

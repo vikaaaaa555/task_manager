@@ -94,7 +94,6 @@ class _TaskFormState extends State<TaskForm> {
                     '${_dueDate?.day}/${_dueDate?.month}/${_dueDate?.year}',
                   ),
                 ),
-                const Icon(Icons.calendar_month_outlined),
               ],
             ),
             const SizedBox(height: 10),
