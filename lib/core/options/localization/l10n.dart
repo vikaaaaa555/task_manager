@@ -188,6 +188,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Due deadline: {daysLeft} day(s)`
+  String dueDeadlineDaysleftDays(Object daysLeft) {
+    return Intl.message(
+      'Due deadline: $daysLeft day(s)',
+      name: 'dueDeadlineDaysleftDays',
+      desc: '',
+      args: [daysLeft],
+    );
+  }
+
+  /// `Task: {title} is created`
+  String taskTitleIsCreated(Object title) {
+    return Intl.message(
+      'Task: $title is created',
+      name: 'taskTitleIsCreated',
+      desc: '',
+      args: [title],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

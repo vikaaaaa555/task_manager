@@ -18,5 +18,7 @@
   "tasks": "Tasks",
   "goBack": "Go back",
   "refresh": "Refresh",
-  "arrangeAlphabetically": "Arrange alphabetically"
+  "arrangeAlphabetically": "Arrange alphabetically",
+  "dueDeadlineDaysleftDays": "Due deadline: {daysLeft} day(s)",
+  "taskTitleIsCreated": "Task: {title} is created"
 }
