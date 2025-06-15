@@ -18,5 +18,7 @@
   "tasks": "Задачи",
   "goBack": "Назад",
   "refresh": "Обновить",
-  "arrangeAlphabetically": "Расположить по алфавиту"
+  "arrangeAlphabetically": "Расположить по алфавиту",
+  "dueDeadlineDaysleftDays": "До дедлайна: {daysLeft} дней",
+  "taskTitleIsCreated": "Задача: {title} создана"
 }

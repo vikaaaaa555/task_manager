@@ -20,7 +20,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(formattedDate) => "Due: ${formattedDate}";
+  static String m0(daysLeft) => "Due deadline: ${daysLeft} day(s)";
+
+  static String m1(formattedDate) => "Due: ${formattedDate}";
+
+  static String m2(title) => "Task: ${title} is created";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -29,7 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "description": MessageLookupByLibrary.simpleMessage("Description"),
-    "dueFormattedDate": m0,
+    "dueDeadlineDaysleftDays": m0,
+    "dueFormattedDate": m1,
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "fillInAllFields": MessageLookupByLibrary.simpleMessage(
       "Fill in all fields",
@@ -46,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "The password reset link has been sent to your email.",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+    "taskTitleIsCreated": m2,
     "tasks": MessageLookupByLibrary.simpleMessage("Tasks"),
     "title": MessageLookupByLibrary.simpleMessage("Title"),
     "unexpectedError": MessageLookupByLibrary.simpleMessage("Unexpected error"),
