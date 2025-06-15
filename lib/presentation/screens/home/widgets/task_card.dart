@@ -37,18 +37,6 @@ class TaskCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    decoration:
-                        isCompleted
-                            ? TextDecoration.lineThrough
-                            : TextDecoration.none,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
                 Checkbox(
                   value: isCompleted,
                   onChanged: (value) {
@@ -62,6 +50,18 @@ class TaskCard extends StatelessWidget {
                       ),
                     );
                   },
+                ),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    decoration:
+                        isCompleted
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
