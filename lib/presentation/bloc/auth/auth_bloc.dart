@@ -9,6 +9,7 @@ import '../../../features/auth/domain/use_cases/reset_password_use_case.dart';
 import '../../../features/auth/domain/use_cases/sign_in_with_email_and_password_use_case.dart';
 
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 /// Bloc responsible for handling authentication events and states.
@@ -36,6 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LogInEvent>(_handleLogInEvent);
     on<ResetPasswordEvent>(_handleResetPasswordEvent);
     on<_AuthStatusChangedEvent>(_handleAuthStatusChangedEvent);
+    on<AuthResetEvent>(_handleAuthResetEvent);
 
     _authStateSubscription = authStateChanges.listen(
       (user) =>
@@ -111,6 +113,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) =>
       event.user != null ? emit(AuthSuccess(event.user!)) : emit(AuthInitial());
+
+  void _handleAuthResetEvent(AuthResetEvent event, Emitter<AuthState> emit) =>
+      emit(AuthInitial());
 
   /// Cancels the [authStateChanges] subscription when the BLoC is closed.
   ///
