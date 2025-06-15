@@ -32,10 +32,12 @@ class TaskRepositoryImpl implements TaskRepository {
     String title,
     String description,
     DateTime dueDate,
+    bool isCompleted,
   ) async => await _dataSource.updateTask(
     id: id,
     title: title,
     description: description,
     dueDate: dueDate,
+    isCompleted: isCompleted,
   );
 }

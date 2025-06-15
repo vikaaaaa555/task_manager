@@ -7,6 +7,7 @@ class TaskModel extends TaskEntity {
     required super.title,
     required super.description,
     required super.dueDate,
+    super.isCompleted = false,
   });
 
   factory TaskModel.fromJson(Json json) => TaskModel(
@@ -14,6 +15,7 @@ class TaskModel extends TaskEntity {
     title: json['title'],
     description: json['description'],
     dueDate: DateTime.fromMillisecondsSinceEpoch(json['dueDate']),
+    isCompleted: json['isCompleted'] as bool? ?? false,
   );
 
   Json toJson() => {
@@ -21,5 +23,6 @@ class TaskModel extends TaskEntity {
     'title': title,
     'description': description,
     'dueDate': dueDate.millisecondsSinceEpoch,
+    'isCompleted': isCompleted,
   };
 }

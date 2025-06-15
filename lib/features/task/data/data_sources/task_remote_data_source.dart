@@ -24,6 +24,7 @@ abstract class TaskRemoteDataSource {
     required String title,
     required String description,
     required DateTime dueDate,
+    required bool isCompleted,
   });
 
   /// Deletes a task with the given ID.
@@ -67,6 +68,7 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
           title: title,
           description: description,
           dueDate: dueDate,
+          isCompleted: false,
         ).toJson(),
       );
     } catch (e) {
@@ -109,12 +111,14 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
     required String title,
     required String description,
     required DateTime dueDate,
+    required bool isCompleted,
   }) async {
     try {
       await _userTasksRef.child(id).update({
         'title': title,
         'description': description,
         'dueDate': dueDate.millisecondsSinceEpoch,
+        'isCompleted': isCompleted,
       });
     } catch (e) {
       throw Exception('Failed to update task: $e');

@@ -10,6 +10,7 @@ abstract class TaskRepository {
     String title,
     String description,
     DateTime dueDate,
+    bool isCompleted,
   );
 
   Future<void> deleteTask(String id);
