@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/options/localization/l10n.dart';
 import '../../bloc/auth/auth_bloc.dart';
@@ -20,24 +21,26 @@ class AuthScreenWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is AuthSuccess) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomeScreenWrapper()),
-          );
-        }
+        if (state is AuthSuccess) context.go('/home');
       },
       builder: (context, state) {
-        if (state is AuthInitial) {
-          return const AuthScreen();
-        } else if (state is AuthLoading || state is AuthSuccess) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is AuthFailure) {
-          return Center(child: Text(S.of(context).errorCodeAndMessage(
-            state.code as Object,
-            state.message as Object)),
-          );
-        } else {
-          return Center(child: Text(S.of(context).unexpectedError));
+        switch (state) {
+          case AuthInitial():
+            return const AuthScreen();
+          case AuthLoading():
+          case AuthSuccess():
+            return const Center(child: CircularProgressIndicator());
+          case AuthFailure():
+            return Column(
+              children: [
+                Center(child: Text('${state.message}')),
+                ElevatedButton(
+                  onPressed:
+                      () => context.read<AuthBloc>().add(AuthResetEvent()),
+                  child: Text(S.of(context).goBack),
+                ),
+              ],
+            );
         }
       },
     );

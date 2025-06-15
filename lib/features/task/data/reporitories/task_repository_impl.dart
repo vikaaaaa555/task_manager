@@ -23,7 +23,7 @@ class TaskRepositoryImpl implements TaskRepository {
       await _dataSource.deleteTask(id: id);
 
   @override
-  Future<List<TaskModel>?> getAllTasks() async =>
+  Future<List<TaskModel>> getAllTasks() async =>
       await _dataSource.getAllTasks();
 
   @override
@@ -32,10 +32,12 @@ class TaskRepositoryImpl implements TaskRepository {
     String title,
     String description,
     DateTime dueDate,
+    bool isCompleted,
   ) async => await _dataSource.updateTask(
     id: id,
     title: title,
     description: description,
     dueDate: dueDate,
+    isCompleted: isCompleted,
   );
 }

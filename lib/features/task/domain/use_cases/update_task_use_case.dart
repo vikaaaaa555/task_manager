@@ -9,8 +9,14 @@ class UpdateTaskUseCase extends UseCaseWithParams<void, UpdateTaskParams> {
   const UpdateTaskUseCase(this._repository);
 
   @override
-  Future<void> call(UpdateTaskParams params) async => await _repository
-      .updateTask(params.id, params.title, params.description, params.dueDate);
+  Future<void> call(UpdateTaskParams params) async =>
+      await _repository.updateTask(
+        params.id,
+        params.title,
+        params.description,
+        params.dueDate,
+        params.isCompleted,
+      );
 }
 
 class UpdateTaskParams extends Equatable {
@@ -18,14 +24,16 @@ class UpdateTaskParams extends Equatable {
   final String title;
   final String description;
   final DateTime dueDate;
+  final bool isCompleted;
 
   const UpdateTaskParams({
     required this.id,
     required this.title,
     required this.description,
     required this.dueDate,
+    this.isCompleted = false,
   });
 
   @override
-  List<Object?> get props => [id, title, description, dueDate];
+  List<Object?> get props => [id, title, description, dueDate, isCompleted];
 }

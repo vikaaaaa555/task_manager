@@ -64,16 +64,6 @@ class S {
     );
   }
 
-  /// `Error: {code}\n{message}`
-  String errorCodeAndMessage(Object code, Object message) {
-    return Intl.message(
-      'Error: $code\n$message',
-      name: 'errorCodeAndMessage',
-      desc: '',
-      args: [code, message],
-    );
-  }
-
   /// `Sign up`
   String get signUp {
     return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
@@ -109,11 +99,91 @@ class S {
     );
   }
 
-  /// `Reset password link sent to the email`
+  /// `The password reset link has been sent to your email.`
   String get sentResetLink {
     return Intl.message(
-      'Reset password link sent to the email',
+      'The password reset link has been sent to your email.',
       name: 'sentResetLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Due: {formattedDate}`
+  String dueFormattedDate(Object formattedDate) {
+    return Intl.message(
+      'Due: $formattedDate',
+      name: 'dueFormattedDate',
+      desc: '',
+      args: [formattedDate],
+    );
+  }
+
+  /// `Title`
+  String get title {
+    return Intl.message('Title', name: 'title', desc: '', args: []);
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message('Description', name: 'description', desc: '', args: []);
+  }
+
+  /// `Select due date`
+  String get selectDueDate {
+    return Intl.message(
+      'Select due date',
+      name: 'selectDueDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill in all fields`
+  String get fillInAllFields {
+    return Intl.message(
+      'Fill in all fields',
+      name: 'fillInAllFields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message('Save', name: 'save', desc: '', args: []);
+  }
+
+  /// `Update`
+  String get update {
+    return Intl.message('Update', name: 'update', desc: '', args: []);
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `Tasks`
+  String get tasks {
+    return Intl.message('Tasks', name: 'tasks', desc: '', args: []);
+  }
+
+  /// `Go back`
+  String get goBack {
+    return Intl.message('Go back', name: 'goBack', desc: '', args: []);
+  }
+
+  /// `Refresh`
+  String get refresh {
+    return Intl.message('Refresh', name: 'refresh', desc: '', args: []);
+  }
+
+  /// `Arrange alphabetically`
+  String get arrangeAlphabetically {
+    return Intl.message(
+      'Arrange alphabetically',
+      name: 'arrangeAlphabetically',
       desc: '',
       args: [],
     );

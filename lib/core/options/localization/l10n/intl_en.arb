@@ -1,11 +1,22 @@
 {
   "unexpectedError": "Unexpected error",
-  "errorCodeAndMessage": "Error: {code}\n{message}",
   "signUp": "Sign up",
   "logIn": "Log In",
   "email": "Email",
   "password": "Password",
   "send": "Send",
   "forgotPassword": "Forgot password?",
-  "sentResetLink": "Reset password link sent to the email"
+  "sentResetLink": "The password reset link has been sent to your email.",
+  "dueFormattedDate": "Due: {formattedDate}",
+  "title": "Title",
+  "description": "Description",
+  "selectDueDate": "Select due date",
+  "fillInAllFields": "Fill in all fields",
+  "save": "Save",
+  "update": "Update",
+  "delete": "Delete",
+  "tasks": "Tasks",
+  "goBack": "Go back",
+  "refresh": "Refresh",
+  "arrangeAlphabetically": "Arrange alphabetically"
 }
