@@ -16,5 +16,7 @@
   "update": "Обновить",
   "delete": "Удалить",
   "tasks": "Задачи",
-  "goBack": "Назад"
+  "goBack": "Назад",
+  "refresh": "Обновить",
+  "arrangeAlphabetically": "Расположить по алфавиту"
 }

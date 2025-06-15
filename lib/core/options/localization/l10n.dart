@@ -173,6 +173,21 @@ class S {
   String get goBack {
     return Intl.message('Go back', name: 'goBack', desc: '', args: []);
   }
+
+  /// `Refresh`
+  String get refresh {
+    return Intl.message('Refresh', name: 'refresh', desc: '', args: []);
+  }
+
+  /// `Arrange alphabetically`
+  String get arrangeAlphabetically {
+    return Intl.message(
+      'Arrange alphabetically',
+      name: 'arrangeAlphabetically',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

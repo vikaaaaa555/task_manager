@@ -16,5 +16,7 @@
   "update": "Update",
   "delete": "Delete",
   "tasks": "Tasks",
-  "goBack": "Go back"
+  "goBack": "Go back",
+  "refresh": "Refresh",
+  "arrangeAlphabetically": "Arrange alphabetically"
 }
