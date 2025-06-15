@@ -6,13 +6,21 @@ class TaskForm extends StatefulWidget {
   final String? initialTitle;
   final String? initialDescription;
   final DateTime? initialDueDate;
-  final Function(String title, String description, DateTime dueDate) onSubmit;
+  final bool? initialIsCompleted;
+  final Function(
+    String title,
+    String description,
+    DateTime dueDate,
+    bool? isCompleted,
+  )
+  onSubmit;
 
   const TaskForm({
     super.key,
     this.initialTitle,
     this.initialDescription,
     this.initialDueDate,
+    this.initialIsCompleted,
     required this.onSubmit,
   });
 
@@ -98,6 +106,7 @@ class _TaskFormState extends State<TaskForm> {
                     _titleController.text,
                     _descriptionController.text,
                     _dueDate!,
+                    widget.initialIsCompleted,
                   );
                   Navigator.pop(context);
                 } else {

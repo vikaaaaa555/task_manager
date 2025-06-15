@@ -109,6 +109,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           title: event.title,
           description: event.description,
           dueDate: event.dueDate,
+          isCompleted: event.isCompleted,
         ),
       );
       add(LoadTasksFromDBEvent());

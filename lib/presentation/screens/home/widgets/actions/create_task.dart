@@ -11,13 +11,14 @@ class CreateTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return TaskForm(
       onSubmit:
-          (title, description, dueDate) => context.read<HomeBloc>().add(
-            CreateTaskEvent(
-              title: title,
-              description: description,
-              dueDate: dueDate,
-            ),
-          ),
+          (title, description, dueDate, isCompleted) =>
+              context.read<HomeBloc>().add(
+                CreateTaskEvent(
+                  title: title,
+                  description: description,
+                  dueDate: dueDate,
+                ),
+              ),
     );
   }
 }

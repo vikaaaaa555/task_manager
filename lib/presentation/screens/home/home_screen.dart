@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,6 +20,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(
+      const Duration(seconds: 30),
+      (timer) => context.read<HomeBloc>().add(LoadTasksFromDBEvent()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(10),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                    crossAxisCount: 4,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                     childAspectRatio: 1,
@@ -43,9 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     return GestureDetector(
                       onLongPress: () => _showOptionsDialog(task),
                       child: TaskCard(
+                        id: task.id!,
                         title: task.title,
                         description: task.description,
                         dueDate: task.dueDate,
+                        isCompleted: task.isCompleted,
                       ),
                     );
                   },
@@ -74,40 +99,40 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder:
           (context) => AlertDialog(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed:
-                      () => showModalBottomSheet(
-                    context: context,
-                    builder:
-                        (context) => Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: UpdateTask(task: task),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed:
+                          () => showModalBottomSheet(
+                            context: context,
+                            builder:
+                                (context) => Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: UpdateTask(task: task),
+                                ),
+                          ),
+                      child: Text(S.of(context).update),
                     ),
-                  ),
-                  child: Text(S.of(context).update),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<HomeBloc>().add(
+                          DeleteTaskEvent(id: task.id!),
+                        );
+                        Navigator.pop(context);
+                      },
+                      child: Text(S.of(context).delete),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<HomeBloc>().add(
-                      DeleteTaskEvent(id: task.id!),
-                    );
-                    Navigator.pop(context);
-                  },
-                  child: Text(S.of(context).delete),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
     );
   }
 }

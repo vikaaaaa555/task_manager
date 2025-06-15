@@ -16,13 +16,15 @@ class UpdateTask extends StatelessWidget {
       initialTitle: task.title,
       initialDescription: task.description,
       initialDueDate: task.dueDate,
-      onSubmit: (title, description, dueDate) {
+      initialIsCompleted: task.isCompleted,
+      onSubmit: (title, description, dueDate, isCompleted) {
         context.read<HomeBloc>().add(
           UpdateTaskEvent(
             id: task.id!,
             title: title,
             description: description,
             dueDate: dueDate,
+            isCompleted: isCompleted!,
           ),
         );
         Navigator.pop(context);
