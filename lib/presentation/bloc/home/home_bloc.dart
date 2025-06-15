@@ -2,10 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../features/task/domain/entities/task_entity.dart';
-import '../../../features/task/domain/use_cases/create_task.dart';
-import '../../../features/task/domain/use_cases/delete_task.dart';
-import '../../../features/task/domain/use_cases/get_all_tasks.dart';
-import '../../../features/task/domain/use_cases/update_task.dart';
+import '../../../features/task/domain/use_cases/create_task_use_case.dart';
+import '../../../features/task/domain/use_cases/delete_task_use_case.dart';
+import '../../../features/task/domain/use_cases/get_all_tasks_use_case.dart';
+import '../../../features/task/domain/use_cases/update_task_use_case.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

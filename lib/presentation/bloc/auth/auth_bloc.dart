@@ -4,9 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../features/auth/domain/use_cases/create_account_with_email_and_password.dart';
-import '../../../features/auth/domain/use_cases/reset_password.dart';
-import '../../../features/auth/domain/use_cases/sign_in_with_email_and_password.dart';
+import '../../../features/auth/domain/use_cases/create_account_with_email_and_password_use_case.dart';
+import '../../../features/auth/domain/use_cases/reset_password_use_case.dart';
+import '../../../features/auth/domain/use_cases/sign_in_with_email_and_password_use_case.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
